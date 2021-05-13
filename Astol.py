@@ -9,7 +9,7 @@
 # This tooks me lots of Googling. I learned about sys, subprocess, and platform to grab the things that I need. While I can read this and know what it does;
 # I need to re-do it a few more times to burn it into memory.
 
-import sys, subprocess						# This imports the required utilities for Python 3 to run this script.
+import sys, subprocess							# This imports the required utilities for Python 3 to run this script.
 
 while True:								# The program starts out with a loop so it doesn't exit / crash instantly when a non-supported string (input) is, well, inputted.
 	def update():							# Defines a function called update.
