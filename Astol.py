@@ -45,7 +45,7 @@ while True:								# The program starts out with a loop so it doesn't exit / cra
 		NVIDIA = subprocess.run(['sudo bash -c "echo blacklist nouveau > /etc/modprobe.d/blacklist-nvidia-nouveau.conf" && sudo bash -c "echo options nouveau modeset=0 >> /etc/modprobe.d/blacklist-nvidia-nouveau.conf" && sudo update-initramfs -u'], shell=True)
 	
 	subprocess.run(['clear'], shell=True)					# Clears the Terminal.
-	print('\t Welcome to Astol! What would you like to do? \n') 	# Outputs to the shell.
+	print('\t Welcome to Astol! What would you like to do? \n') 	        # Outputs to the shell.
 	print("\t 1. Update")
 	print('\t 2. Install software')						# Breaks a line to ready for user input.
 	print('\t 3. Blacklist Nouveau')
