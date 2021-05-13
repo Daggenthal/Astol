@@ -1,5 +1,5 @@
 # Astol
-Astol is the Python 3 implementation of my scripts from my /Scripts repository.
+Astol is the Python 3 implementation of my scripts from my /Old-Scripts repository.
 
 This took me about 2 hours to complete, with countless Googling, as this is my first ever Python / Python 3 program!
 
