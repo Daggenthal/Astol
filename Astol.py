@@ -1,7 +1,7 @@
 #Author:	Daggenthal
 #Started:	05/13/2021 at 01:20
 #Finished:	05/13/2021 at 03:23
-#Edited:	05/13/2021 at 03:56 (Fully added comments!)
+#Edited:	05/13/2021 at 04:55 (Added option to remove Nouveau for installation of NVIDIA drivers)
 
 
 # I created this as a tool to combine my Update.sh, and Software_Install.sh bash scripts. This was both to learn Python3, and to get rid of a shell-requirement, which this took me around 2 hours to learn how to do.
@@ -38,14 +38,19 @@ while True:								# The program starts out with a loop so it doesn't exit / cra
 		elif OS.find('opensuse'):
 			subprocess.run(['clear && printf "Please input the software you would like to install: " && read install && sudo zypper install -y $install'], shell=True)
 	
-	subprocess.run(['clear'])						# Clears the Terminal.
-	print('Welcome to my script panel! What would you like to do? \n') 	# Outputs to the shell.
-	print("1. Update")
-	print('2. Install software')						# Breaks a line to ready for user input.
-	print('3. Exit \n')
+	def nvidia():
 	
-	response = str(input('Please input your selection as a number: '))	# Sets up a string-variable called "response" to get user input for it to run functions based off of what was inputted.
-	subprocess.run(['clear'])					
+		NVIDIA = subprocess.run(['sudo bash -c "echo blacklist nouveau > /etc/modprobe.d/blacklist-nvidia-nouveau.conf" && sudo bash -c "echo options nouveau modeset=0 >> /etc/modprobe.d/blacklist-nvidia-nouveau.conf" && sudo update-initramfs -u'], shell=True)
+	
+	subprocess.run(['clear'], shell=True)					# Clears the Terminal.
+	print('\t Welcome to my script panel! What would you like to do? \n') 	# Outputs to the shell.
+	print("\t 1. Update")
+	print('\t 2. Install software')						# Breaks a line to ready for user input.
+	print('\t 3. Blacklist Nouveau')
+	print('\t 4. Exit \n')
+	
+	response = str(input('\t Please input your selection as a number: '))	# Sets up a string-variable called "response" to get user input for it to run functions based off of what was inputted.
+	subprocess.run(['clear'], shell=True)					
 	if response == '1':							# Checks to see what was inputted by the User. If "1" is inputted, the update() function is called, and once it's done, exits. If an invalid input is entered, nothing happens.
 		update()
 		sys.exit()							# Exits the program, otherwise the loop will continuously loop through the entire thing, recursively. 
@@ -53,4 +58,18 @@ while True:								# The program starts out with a loop so it doesn't exit / cra
 		software()
 		sys.exit()
 	elif response == '3':
+		while True:
+			subprocess.run(['clear'], shell=True)
+			print("\t This will blacklist the Nouveau driver for systems that have an\n\t NVIDIA card installed w/o proper drivers.\n\n\t Are you sure you want to do this?\n\t ")
+			print('\t 1. Yes')
+			print('\t 2. No')
+			response = str(input("\n\t Response: "))
+			if response == '1':
+				subprocess.run(['clear'], shell=True)
+				nvidia()
+				print("\t You'll have to reboot your computer in order for this to apply.")
+				sys.exit()
+			elif response == '2':
+				break
+	elif response == '4':
 		sys.exit()
