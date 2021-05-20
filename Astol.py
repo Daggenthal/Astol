@@ -1,7 +1,7 @@
-#Author:	Daggenthal
-#Started:	05/13/2021 at 01:20
-#Finished:	05/13/2021 at 03:23
-#Edited:	05/13/2021 at 06:24 (Fixed issue of not being able to read the string output of "subprocess.getoutput()" on different Distros)
+# Author:	Daggenthal
+# Started:	05/13/2021 at 01:20
+# Finished:	05/13/2021 at 03:23
+# Edited:	05/13/2021 at 06:24 (Fixed issue of not being able to read the string output of "subprocess.getoutput()" on different Distros)
 
 
 # I created this as a tool to combine my Update.sh, and Software_Install.sh bash scripts. This was both to learn Python3, and to get rid of a shell-requirement, which this took me around 2 hours to learn how to do.
@@ -9,14 +9,14 @@
 # This tooks me lots of Googling. I learned about sys, subprocess, and platform to grab the things that I need. While I can read this and know what it does;
 # I need to re-do it a few more times to burn it into memory.
 
+##########################################################################################################################################################################################################################################################################################################################################
+
 import sys, subprocess							# This imports the required utilities for Python 3 to run this script.
 
 while True:								# The program starts out with a loop so it doesn't exit / crash instantly when a non-supported string (input) is, well, inputted.
 	def update():							# Defines a function called update.
 	
 		OS = subprocess.getoutput(['cat /etc/os-release'])	# Defines OS, then runs a command located in (['']) + grabs the output of said command and stores it into the variable called
-		#output, _ = OS.communicate()
-		#p_status = OS.wait()
 		 	
 		if 'debian' in OS:					# Scans the string that's outputted by the command and searches for what's in '', so in this case it's searching for the word "debian".
 			subprocess.run(['sudo apt update -y && sudo apt upgrade -y --allow-downgrades && sudo apt autoremove -y'], shell=True)	
@@ -44,9 +44,11 @@ while True:								# The program starts out with a loop so it doesn't exit / cra
 	
 		NVIDIA = subprocess.run(['sudo bash -c "echo blacklist nouveau > /etc/modprobe.d/blacklist-nvidia-nouveau.conf" && sudo bash -c "echo options nouveau modeset=0 >> /etc/modprobe.d/blacklist-nvidia-nouveau.conf" && sudo update-initramfs -u'], shell=True)
 	
+##########################################################################################################################################################################################################################################################################################################################################	
+	
 	subprocess.run(['clear'], shell=True)					# Clears the Terminal.
-	print('\t Welcome to Astol! What would you like to do? \n') 	        # Outputs to the shell.
-	print("\t 1. Update")
+	print('\t Welcome to Astol! What would you like to do? \n') 		# Outputs to the shell.
+	print('\t 1. Update')
 	print('\t 2. Install software')						# Breaks a line to ready for user input.
 	print('\t 3. Blacklist Nouveau')
 	print('\t 4. Exit \n')
@@ -65,7 +67,7 @@ while True:								# The program starts out with a loop so it doesn't exit / cra
 			print("\t This will blacklist the Nouveau driver for systems that have an\n\t NVIDIA card installed w/o proper drivers.\n\n\t Are you sure you want to do this?\n\t ")
 			print('\t 1. Yes')
 			print('\t 2. No')
-			response = str(input("\n\t Response: "))
+			response = str(input('\n\t Response: '))
 			if response == '1':
 				subprocess.run(['clear'], shell=True)
 				nvidia()
