@@ -1,7 +1,7 @@
 # Author:	Daggenthal
 # Started:	05/13/2021 at 01:20
 # Finished:	05/13/2021 at 03:23
-# Edited:	05/20/2021 at 17:25 (Fixed issue of not being able to read the string output of "subprocess.getoutput()" on different Distros)
+# Edited:	06/18/2021 at 19:59 (Added two more comments for readability.)
 
 
 # I created this as a tool to combine my Update.sh, and Software_Install.sh bash scripts. This was both to learn Python3, and to get rid of a shell-requirement, which this took me around 2 hours to learn how to do.
@@ -13,7 +13,7 @@
 
 import sys, subprocess									# This imports the required utilities for Python 3 to run this script.
 
-try:
+try:											# This allows us to exit the program with 'CTRL+C' or 'CTRL+D' without spitting out errors / nonsense.
 	while True:									# The program starts out with a loop so it doesn't exit / crash instantly when a non-supported string (input) is, well, inputted.
 		def update():								# Defines a function called update.
 		
@@ -78,7 +78,7 @@ try:
 					break
 		elif response == '4':
 			sys.exit()
-except KeyboardInterrupt:
+except KeyboardInterrupt:								# This checks for 'CTRL+C' or 'CTRL+D', whichever comes first, and clears the Terminal, then prints out a statement.
 	subprocess.run(['clear'], shell=True)
 	print('User has purposefully interrupted the execution of the program.')
 	
