@@ -48,7 +48,7 @@ try:											# This allows us to exit the program with 'CTRL+C' or 'CTRL+D' wi
 		def return_to_loop():
 
 			while True:
-					print('\n\n----------------------------------------------------------------------------\n')
+					print('\n\n ----------------------------------------------------------------------------\n')
 					print('\t\t\t\t Astol')
 					print('\n\n\t Would you like to return to the main menu?\n\t')
 					print('\t 1. Yes')
