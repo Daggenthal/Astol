@@ -1,7 +1,6 @@
 # Author:	Daggenthal
 # Started:	05/13/2021 at 01:20
 # Finished:	05/13/2021 at 03:23
-# Edited:	07/30/2021 at 08:03 (Added return_to_loop function.)
 
 
 # I created this as a tool to combine my Update.sh, and Software_Install.sh bash scripts. This was both to learn Python3, and to get rid of a shell-requirement, which this took me around 2 hours to learn how to do.
