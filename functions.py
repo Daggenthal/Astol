@@ -1,18 +1,11 @@
 # Author:	Daggenthal
 # Started:	05/13/2021 at 01:20
-# Finished:	05/13/2021 at 03:23
+# Finished:	02/06/2022 at 20:39
 
+import sys, subprocess							# This imports the required utilities for Python 3 to run this script.
+								
 
-# I created this as a tool to combine my Update.sh, and Software_Install.sh bash scripts. This was both to learn Python3, and to get rid of a shell-requirement, which this took me around 2 hours to learn how to do.
-# I started this around 01:20, and finished it at 03:23.
-# This tooks me lots of Googling. I learned about sys, subprocess, and platform to grab the things that I need. While I can read this and know what it does;
-# I need to re-do it a few more times to burn it into memory.
-
-##########################################################################################################################################################################################################################################################################################################################################
-import sys, subprocess
-								# This imports the required utilities for Python 3 to run this script.
-
-											# This allows us to exit the program with 'CTRL+C' or 'CTRL+D' without spitting out errors / nonsense.
+									# This allows us to exit the program with 'CTRL+C' or 'CTRL+D' without spitting out errors / nonsense.
 									# The program starts out with a loop so it doesn't exit / crash instantly when a non-supported string (input) is, well, inputted.
 def update():								# Defines a function called update.
 		
