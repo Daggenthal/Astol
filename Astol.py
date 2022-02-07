@@ -1,7 +1,6 @@
 # Author:	Daggenthal
 # Started:	05/13/2021 at 01:20
 # Finished:	05/13/2021 at 03:23
-# Edited:	07/30/2021 at 08:03 (Added return_to_loop function.)
 
 
 # I created this as a tool to combine my Update.sh, and Software_Install.sh bash scripts. This was both to learn Python3, and to get rid of a shell-requirement, which this took me around 2 hours to learn how to do.
@@ -19,7 +18,7 @@ try:											# This allows us to exit the program with 'CTRL+C' or 'CTRL+D' wi
 		
 			OS = subprocess.getoutput(['cat /etc/os-release'])		# Defines OS, then runs a command located in (['']) + grabs the output of said command and stores it into the variable called
 
-			if 'debian' in OS:						# Scans the string that's outputted by the command and searches for what's in '', so in this case it's searching for the word "debian".
+			if 'debian' or 'ubuntu' in OS:					# Scans the string that's outputted by the command and searches for what's in '', so in this case it's searching for the word "debian".
 				subprocess.run(['sudo apt update -y && sudo apt upgrade -y --allow-downgrades && sudo apt autoremove -y'], shell=True)	
 			elif 'fedora' in OS:
 				subprocess.run(['sudo dnf update -y && sudo dnf upgrade -y'], shell=True)
@@ -28,22 +27,69 @@ try:											# This allows us to exit the program with 'CTRL+C' or 'CTRL+D' wi
 			elif 'opensuse' in OS:
 				subprocess.run(['sudo zypper refresh && sudo zypper update -y'], shell=True)
 
-		def software():
-		
-			OS = subprocess.getoutput(['cat /etc/os-release'])
+		def remove():
+			while True:
+				
+				print('\t Would you like to remove some software, or go back?\n')
+				print('\t 1: Remove software')
+				print('\t 2: Go back\n\t')
+				
+				response = str(input('\t Please input your selection: '))
+				if response == '1':
+					OS = subprocess.getoutput(['cat /etc/os-release'])
 
-			if 'debian' in OS:
-				subprocess.run(['clear && printf "\t Please input the software you would like to install: " && read install && sudo apt install -y $install'], shell=True)
-			elif 'fedora' in OS:
-				subprocess.run(['clear && printf "\t Please input the software you would like to install: " && read install && sudo dnf install -y $install'], shell=True)
-			elif 'arch' in OS:
-				subprocess.run(['clear && printf "\t Please input the software you would like to install: " && read install && sudo pacman -S --noconfirm $install'], shell=True)
-			elif 'opensuse' in OS:
-				subprocess.run(['clear && printf "\t Please input the software you would like to install: " && read install && sudo zypper install -y $install'], shell=True)
+					if 'debian' or 'ubuntu' in OS:
+						subprocess.run(['clear && printf "\t Please input the software you would like to remove: " && read remove && sudo apt remove $remove'], shell=True)
+					elif 'fedora' in OS:
+						subprocess.run(['clear && printf "\t Please input the software you would like to remove: " && read remove && sudo dnf remove $remove'], shell=True)
+					elif 'arch' in OS:
+						subprocess.run(['clear && printf "\t Please input the software you would like to remove: " && read remove && sudo pacman -R $remove'], shell=True)
+					elif 'opensuse' in OS:
+						subprocess.run(['clear && printf "\t Please input the software you would like to remove: " && read remove && sudo zypper remove $remove'], shell=True)
+				elif response == '2':
+					break
+		
+		def software():
+			while True:
+			
+				print('\t Would you like to install some software, or go back?\n')
+				print('\t 1: Install software')
+				print('\t 2: Go back\n\t')
+				
+				response = str(input('\t Please input your selection: '))
+				if response == '1':
+					OS = subprocess.getoutput(['cat /etc/os-release'])
+					
+					if 'debian' or 'ubuntu' in OS:
+						subprocess.run(['clear && printf "\t Please input the software you would like to install: " && read install && sudo apt install -y $install'], shell=True)
+					elif 'fedora' in OS:
+						subprocess.run(['clear && printf "\t Please input the software you would like to install: " && read install && sudo dnf install -y $install'], shell=True)
+					elif 'arch' in OS:
+						subprocess.run(['clear && printf "\t Please input the software you would like to install: " && read install && sudo pacman -S --noconfirm $install'], shell=True)
+					elif 'opensuse' in OS:
+						subprocess.run(['clear && printf "\t Please input the software you would like to install: " && read install && sudo zypper install -y $install'], shell=True)
+					
+				elif response == '2':
+					break
 		
 		def nvidia():
+			while True:
+			
+				subprocess.run(['clear'], shell=True)
+				print("\t This will blacklist the Nouveau driver for systems that have an\n\t NVIDIA card installed w/o proper drivers.\n\n\t Are you sure you want to do this?\n\n\t Please note that this has only been tested on Ubuntu 21.04;\n\t")
+				print('\t 1: Yes')
+				print('\t 2: No')
+				
+				response = str(input('\n\t Response: '))
+				if response == '1':
+					subprocess.run(['clear'], shell=True)
+					NVIDIA = subprocess.run(['sudo bash -c "echo blacklist nouveau > /etc/modprobe.d/blacklist-nvidia-nouveau.conf" && sudo bash -c "echo options nouveau modeset=0 >> /etc/modprobe.d/blacklist-nvidia-nouveau.conf" && sudo update-initramfs -u'], shell=True)
+					print("\t You'll have to reboot your computer in order for this to apply.")
+					sys.exit()
+				elif response == '2':
+					break
 
-			NVIDIA = subprocess.run(['sudo bash -c "echo blacklist nouveau > /etc/modprobe.d/blacklist-nvidia-nouveau.conf" && sudo bash -c "echo options nouveau modeset=0 >> /etc/modprobe.d/blacklist-nvidia-nouveau.conf" && sudo update-initramfs -u'], shell=True)
+			
 		
 		def return_to_loop():
 
@@ -58,16 +104,17 @@ try:											# This allows us to exit the program with 'CTRL+C' or 'CTRL+D' wi
 						break
 					elif response == '2':
 						subprocess.run(['clear'], shell=True)
-						sys.exit() # This causes the program to terminate gracefully.
+						sys.exit() 				# This causes the program to terminate gracefully.
 
 ##########################################################################################################################################################################################################################################################################################################################################	
 		
 		subprocess.run(['clear'], shell=True)					# Clears the Terminal.
 		print('\t Welcome to Astol! What would you like to do? \n') 		# Outputs to the shell.
-		print('\t 1. Update')
-		print('\t 2. Install software')						# Breaks a line to ready for user input.
-		print('\t 3. Blacklist Nouveau')
-		print('\t 4. Exit \n')
+		print('\t 1: Update')
+		print('\t 2: Install software')						# Breaks a line to ready for user input.
+		print('\t 3: Remove software')
+		print('\t 4: Blacklist Nouveau\n')
+		print('\t 5: Exit \n')
 		
 		response = str(input('\t Please input your selection as a number: '))	# Sets up a string-variable called "response" to get user input for it to run functions based off of what was inputted.
 		subprocess.run(['clear'], shell=True)					
@@ -76,22 +123,11 @@ try:											# This allows us to exit the program with 'CTRL+C' or 'CTRL+D' wi
 			return_to_loop()
 		elif response == '2':
 			software()
-			return_to_loop()
 		elif response == '3':
-			while True:
-				subprocess.run(['clear'], shell=True)
-				print("\t This will blacklist the Nouveau driver for systems that have an\n\t NVIDIA card installed w/o proper drivers.\n\n\t Are you sure you want to do this?\n\n\t Please note that this has only been tested on Ubuntu 21.04;\n\t")
-				print('\t 1. Yes')
-				print('\t 2. No')
-				response = str(input('\n\t Response: '))
-				if response == '1':
-					subprocess.run(['clear'], shell=True)
-					nvidia()
-					print("\t You'll have to reboot your computer in order for this to apply.")
-					sys.exit()
-				elif response == '2':
-					break
+			remove()
 		elif response == '4':
+			nvidia()
+		elif response == '5':
 			sys.exit()
 except KeyboardInterrupt:								# This checks for 'CTRL+C' or 'CTRL+D', whichever comes first, and clears the Terminal, then prints out a statement.
 	subprocess.run(['clear'], shell=True)
