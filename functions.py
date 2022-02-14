@@ -11,7 +11,7 @@ def update():								# Defines a function called update.
 		
 	OS = subprocess.getoutput(['cat /etc/os-release'])		# Defines OS, then runs a command located in (['']) + grabs the output of said command and stores it into the variable called
 
-	if 'debian' or 'ubuntu' in OS:					# Scans the string that's outputted by the command and searches for what's in '', so in this case it's searching for the word "debian".
+	if 'debian' 'ubuntu' in OS:					# Scans the string that's outputted by the command and searches for what's in '', so in this case it's searching for the word "debian".
 		subprocess.run(['sudo apt update -y && sudo apt upgrade -y --allow-downgrades && sudo apt autoremove -y'], shell=True)	
 	elif 'fedora' in OS:
 		subprocess.run(['sudo dnf update -y && sudo dnf upgrade -y'], shell=True)
