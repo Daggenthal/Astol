@@ -19,11 +19,13 @@ def update():								# Defines a function called update.
 		subprocess.run(['sudo pacman -Syu'], shell=True) 	# Runs a command through the shell based off of what is returned by the string. In this instance, it runs "sudo pacman -Syu" because the scanned string contained the word "arch" in it.
 	elif 'opensuse' in OS:
 		subprocess.run(['sudo zypper refresh && sudo zypper update -y'], shell=True)
+	elif 'freebsd' in OS:
+		subprocess.run(['sudo freebsd-update fetch && sudo freebsd-update install'], shell=True)
 
 def remove():
 	while True:
 				
-		print('\t Would you like to remove some software, or go back?\n')
+		print('\n\t Would you like to remove some software, or go back?\n')
 		print('\t 1: Remove software')
 		print('\t 2: Go back\n\t')
 				
@@ -32,6 +34,7 @@ def remove():
 		if response == '1':
 
 			OS = subprocess.getoutput(['cat /etc/os-release'])
+
 			if 'debian' in OS:
 				subprocess.run(['clear && printf "\t Please input the software you would like to remove: " && read remove && sudo apt remove $remove'], shell=True)
 			elif 'fedora' in OS:
@@ -40,13 +43,15 @@ def remove():
 				subprocess.run(['clear && printf "\t Please input the software you would like to remove: " && read remove && sudo pacman -R $remove'], shell=True)
 			elif 'opensuse' in OS:
 				subprocess.run(['clear && printf "\t Please input the software you would like to remove: " && read remove && sudo zypper remove $remove'], shell=True)
+			elif 'freebsd' in OS:
+				subprocess.run(['clear && printf "\t Please input the software you would like to remove: " && read remove && sudo pkg remove -y $remove'], shell=True)
 		elif response == '2':
 				break
 		
 def software():
 	while True:
 			
-		print('\t Would you like to install some software, or go back?\n')
+		print('\n\t Would you like to install some software, or go back?\n')
 		print('\t 1: Install software')
 		print('\t 2: Go back\n\t')
 				
@@ -63,6 +68,8 @@ def software():
 				subprocess.run(['clear && printf "\t Please input the software you would like to install: " && read install && sudo pacman -S --noconfirm $install'], shell=True)
 			elif 'opensuse' in OS:
 				subprocess.run(['clear && printf "\t Please input the software you would like to install: " && read install && sudo zypper install -y $install'], shell=True)
+			elif 'freebsd' in OS:
+				subprocess.run(['clear && printf "\t Please input the software you would like to install: " && read install && sudo pkg install -y $install'], shell=True)
 					
 		elif response == '2':
 			break
