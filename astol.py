@@ -21,8 +21,7 @@ try:											# This allows us to exit the program with 'CTRL+C' or 'CTRL+D' wi
 		print('\t 1: Update')
 		print('\t 2: Install software')						# Breaks a line to ready for user input.
 		print('\t 3: Remove software')
-		print('\t 4: Blacklist Nouveau\n')
-		print('\t 5: Exit \n')
+		print('\t 4: Exit \n')
 		
 		response = str(input('\t Please input your selection as a number: '))	# Sets up a string-variable called "response" to get user input for it to run functions based off of what was inputted.
 		subprocess.run(['clear'], shell=True)					
@@ -34,8 +33,6 @@ try:											# This allows us to exit the program with 'CTRL+C' or 'CTRL+D' wi
 		elif response == '3':
 			functions.remove()
 		elif response == '4':
-			functions.nvidia()
-		elif response == '5':
 			sys.exit()
 except KeyboardInterrupt:								# This checks for 'CTRL+C' or 'CTRL+D', whichever comes first, and clears the Terminal, then prints out a statement.
 	subprocess.run(['clear'], shell=True)

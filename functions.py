@@ -74,25 +74,6 @@ def software():
 		elif response == '2':
 			break
 		
-def nvidia():
-	while True:
-			
-		subprocess.run(['clear'], shell=True)
-		print("\t This will blacklist the Nouveau driver for systems that have an\n\t NVIDIA card installed w/o proper drivers.\n\n\t Are you sure you want to do this?\n\n\t Please note that this has only been tested on Ubuntu 21.04;\n\t")
-		print('\t 1: Yes')
-		print('\t 2: No')
-		
-		response = str(input('\n\t Response: '))
-		if response == '1':
-			subprocess.run(['clear'], shell=True)
-			NVIDIA = subprocess.run(['sudo bash -c "echo blacklist nouveau > /etc/modprobe.d/blacklist-nvidia-nouveau.conf" && sudo bash -c "echo options nouveau modeset=0 >> /etc/modprobe.d/blacklist-nvidia-nouveau.conf" && sudo update-initramfs -u'], shell=True)
-			print("\t You'll have to reboot your computer in order for this to apply.")
-			sys.exit()
-		elif response == '2':
-			break
-
-			
-		
 def return_to_loop():
 	while True:
 					
