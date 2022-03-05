@@ -34,7 +34,7 @@ try:											# This allows us to exit the program with 'CTRL+C' or 'CTRL+D' wi
 			functions.remove()
 		elif response == '4':
 			sys.exit()
-except KeyboardInterrupt:								# This checks for 'CTRL+C' or 'CTRL+D', whichever comes first, and clears the Terminal, then prints out a statement.
+except KeyboardInterrupt:								# This checks for 'CTRL+C' or 'CTRL+D', whichever comes first, clears the Terminal, then prints out a statement.
 	subprocess.run(['clear'], shell=True)
 	print('User has purposefully interrupted the execution of Astol.')
 	
