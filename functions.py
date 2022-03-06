@@ -7,7 +7,7 @@ def update():								# Defines a function called update.
 		
 	OS = subprocess.getoutput(['cat /etc/os-release'])		# Defines OS, then runs a command located in (['']) + grabs the output of said command and stores it into the variable called
 
-	if 'debian' in OS:					# Scans the string that's outputted by the command and searches for what's in '', so in this case it's searching for the word "debian".
+	if 'debian' or 'ubuntu' in OS:					# Scans the string that's outputted by the command and searches for what's in '', so in this case it's searching for the word "debian".
 		subprocess.run(['sudo apt update -y && sudo apt upgrade -y --allow-downgrades && sudo apt autoremove -y'], shell=True)	
 	elif 'fedora' in OS:
 		subprocess.run(['sudo dnf update -y && sudo dnf upgrade -y'], shell=True)
@@ -31,7 +31,7 @@ def remove():
 
 			OS = subprocess.getoutput(['cat /etc/os-release'])
 
-			if 'debian' in OS:
+			if 'debian' or 'ubuntu' in OS:
 				subprocess.run(['clear && printf "\t Please input the software you would like to remove: " && read remove && sudo apt remove $remove'], shell=True)
 			elif 'fedora' in OS:
 				subprocess.run(['clear && printf "\t Please input the software you would like to remove: " && read remove && sudo dnf remove $remove'], shell=True)
@@ -56,7 +56,7 @@ def software():
 		
 			OS = subprocess.getoutput(['cat /etc/os-release'])
 					
-			if 'debian' in OS:
+			if 'debian' or 'ubuntu' in OS:
 				subprocess.run(['clear && printf "\t Please input the software you would like to install: " && read install && sudo apt install -y $install'], shell=True)
 			elif 'fedora' in OS:
 				subprocess.run(['clear && printf "\t Please input the software you would like to install: " && read install && sudo dnf install -y $install'], shell=True)
