@@ -1,7 +1,3 @@
-# Author:	Daggenthal
-# Started:	05/13/2021 at 01:20
-# Finished:	02/06/2022 at 20:39
-
 import sys, subprocess							# This imports the required utilities for Python 3 to run this script.
 								
 
