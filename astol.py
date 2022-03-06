@@ -1,8 +1,7 @@
 import sys, subprocess, functions									# This imports the required utilities for Python 3 to run this script.
 
 try:											# This allows us to exit the program with 'CTRL+C' or 'CTRL+D' without spitting out errors / nonsense.
-	while True:									# The program starts out with a loop so it doesn't exit / crash instantly when a non-supported 
-##########################################################################################################################################################################################################################################################################################################################################	
+	while True:									# The program starts out with a loop so it doesn't exit / crash instantly when a non-supported 	
 		
 		subprocess.run(['clear'], shell=True)					# Clears the Terminal.
 		print('\t Welcome to Astol! What would you like to do? \n') 		# Outputs to the shell.
