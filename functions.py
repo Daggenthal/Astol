@@ -1,6 +1,7 @@
 import sys							# This imports the required utilities for Python 3 to run this script.
 								
 from subprocess import run, getoutput
+from string import input
 									
 									# This allows us to exit the program with 'CTRL+C' or 'CTRL+D' without spitting out errors / nonsense.
 									# The program starts out with a loop so it doesn't exit / crash instantly when a non-supported string (input) is, well, inputted.
@@ -29,7 +30,7 @@ def remove():
 		print('\t 1: Remove software')
 		print('\t 2: Go back\n\t')
 				
-		response = str(input('\t Please input your selection: '))
+		response = input('\t Please input your selection: ')
 
 		if response == '1':
 
@@ -56,7 +57,7 @@ def software():
 		print('\t 1: Install software')
 		print('\t 2: Go back\n\t')
 				
-		response = str(input('\t Please input your selection: '))
+		response = input('\t Please input your selection: ')
 
 		if response == '1':
 		
