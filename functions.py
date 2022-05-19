@@ -1,9 +1,5 @@
-import sys							# This imports the required utilities for Python 3 to run this script.
-								
-from subprocess import run, getoutput
-from string import input
+from subprocess import run, getoutput	# This imports the required utilities for Python 3 to run this script.
 									
-									# This allows us to exit the program with 'CTRL+C' or 'CTRL+D' without spitting out errors / nonsense.
 									# The program starts out with a loop so it doesn't exit / crash instantly when a non-supported string (input) is, well, inputted.
 
 OS = getoutput(['cat /etc/os-release']) # Defines OS, then runs a command located in (['']) + grabs the output of said command and stores it into the variable called
