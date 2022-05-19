@@ -19,14 +19,13 @@ try:											# This allows us to exit the program with 'CTRL+C' or 'CTRL+D' wi
 
 		if response == '1':							# Checks to see what was inputted by the User. If "1" is inputted, the update() function is called, and once it's done, exits. If an invalid input is entered, nothing happens.
 			functions.update()
-			functions.return_to_loop()
 		elif response == '2':
 			functions.software()
 		elif response == '3':
 			functions.remove()
 		elif response == '4':
 			sys.exit()
-			
+
 except KeyboardInterrupt:								# This checks for 'CTRL+C' or 'CTRL+D', whichever comes first, clears the Terminal, then prints out a statement.
 	run(['clear'], shell=True)
-	print('User has purposefully interrupted the execution of Astol.')
+	print('User has purposefully interrupted the execution of the program.')
