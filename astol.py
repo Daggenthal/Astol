@@ -1,4 +1,4 @@
-import sys, functions									# This imports the required utilities for Python 3 to run this script.
+import functions									# This imports the required utilities for Python 3 to run this script.
 
 from subprocess import run
 from sys import exit
@@ -14,7 +14,7 @@ try:											# This allows us to exit the program with 'CTRL+C' or 'CTRL+D' wi
 		print('\t 3: Remove software')
 		print('\t 4: Exit \n')
 		
-		response = str(input('\t Please input your selection as a number: '))	# Sets up a string-variable called "response" to get user input for it to run functions based off of what was inputted.
+		response = input('\t Please input your selection as a number: ')	# Sets up a string-variable called "response" to get user input for it to run functions based off of what was inputted.
 
 		run(['clear'], shell=True)
 
