@@ -1,6 +1,7 @@
 import sys, functions									# This imports the required utilities for Python 3 to run this script.
 
 from subprocess import run
+from sys import exit
 
 try:											# This allows us to exit the program with 'CTRL+C' or 'CTRL+D' without spitting out errors / nonsense.
 	while True:									# The program starts out with a loop so it doesn't exit / crash instantly when a non-supported 	
@@ -24,7 +25,7 @@ try:											# This allows us to exit the program with 'CTRL+C' or 'CTRL+D' wi
 		elif response == '3':
 			functions.remove()
 		elif response == '4':
-			sys.exit()
+			exit()
 
 except KeyboardInterrupt:								# This checks for 'CTRL+C' or 'CTRL+D', whichever comes first, clears the Terminal, then prints out a statement.
 	run(['clear'], shell=True)
